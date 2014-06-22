@@ -1,4 +1,4 @@
 CTT-Results-Scraper
 ===================
 
-Web scraper to collect latest race results from CTT (Cycling Time Trials). Uses node.js.
+Web scraper to collect latest race results from www.cyclingtimetrials.org.uk. Uses node.js.
