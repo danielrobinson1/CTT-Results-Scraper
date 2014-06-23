@@ -40,9 +40,22 @@ request(url, function(err, resp, body) {
 	
 	calculateNoOfRiders();
 	combineRows();
+<<<<<<< HEAD
 
 	displayEventDetails();
 	displayResults();
+=======
+	
+	//console.log("");
+	//console.log("Event:");
+	//console.log("");
+	//console.log(eventDetails);
+	//console.log("");
+	//console.log("Results:");
+	//console.log("");
+	//console.log(results.length);
+	//console.log(results);
+>>>>>>> Added function isEven
 	
 });
 
@@ -53,7 +66,11 @@ function errorCheck(x) {
 
 function calculateNoOfRiders() {
 	noOfRiders = ((resultsOdd.length/8 + resultsEven.length/8)+1)/2;
-}
+};
+
+function isEven(n) {
+	return isNumber(n) && (n % 2 == 0);
+};
 
 function combineRows() {
 	
