@@ -7,6 +7,7 @@ var resultsOdd = [];
 var resultsEven = [];
 var results = [];
 var eventDetails;
+var noOfRiders = 0;
 
 request(url, function(err, resp, body) {
 	errorCheck(err);
@@ -36,8 +37,10 @@ request(url, function(err, resp, body) {
 		resultsEven.push(content);
 		
 	});
-		
+	
+	calculateNoOfRiders();
 	combineRows();
+	
 	
 	console.log("");
 	console.log("Event:");
@@ -46,8 +49,10 @@ request(url, function(err, resp, body) {
 	console.log("");
 	console.log("Results:");
 	console.log("");
+	console.log(results.length);
 	console.log(results);
-		
+	
+	
 });
 
 function errorCheck(x) {
@@ -55,29 +60,38 @@ function errorCheck(x) {
 		throw x;
 };
 
+function calculateNoOfRiders() {
+	noOfRiders = ((resultsOdd.length/8 + resultsEven.length/8)+1)/2;
+}
+
 function combineRows() {
 	
 	(function () {
-	var noOfRiders = resultsOdd.length + resultsEven.length;
-	var i=0;
-	
-	while(i < 20) {
-		(function(){
-			var j=0;
-			while(j < 4){
-				results.push(resultsOdd[8*i + j]);
-				j++;
-			}
-		})();
 		
-		(function(){
-			var k=0;
-			while(k < 4){
-				results.push(resultsEven[8*i + k]);
-				k++;
-			}
-		})();
-	i++;
-	}
+		var i=0;
+		while(i < noOfRiders) {
+			
+			//Appends pos, rider, club, time of odd number positioned riders to results array
+			(function(){
+				var j=0;
+				while(j < 4){
+					results.push(resultsOdd[8*i + j]);
+					j++;
+				}
+			})();
+			
+			//Appends pos, rider, club, time of even number positioned riders to results array
+			(function(){
+				var k=0;
+				while(k < 4){
+					results.push(resultsEven[8*i + k]);
+					k++;
+				}
+			})();
+		
+		i++;
+		}
+	
 	})();
+
 };
