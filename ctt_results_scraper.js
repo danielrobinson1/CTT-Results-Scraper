@@ -41,6 +41,26 @@ request(url, function(err, resp, body) {
 	calculateNoOfRiders();
 	combineRows();
 
+	
+	//Added in Issue002 branch. combineRows works ok if there is an even numbr of riders.
+	//Otherwise for an odd number of riders we must add the last rider manually.
+	if (isEven(noOfRiders)) {
+			
+		combineRows(noOfRiders);
+	
+	}
+	
+	else 
+	
+		combineRows(noOfRiders - 1);
+		(function(){
+			var j=0;
+			while(j < 4){
+				results.push(resultsOdd[8*(noOfRiders - 1)/2 + j]);
+				j++;
+			}
+		})();
+
 	displayEventDetails();
 	displayResults();
 	
@@ -52,35 +72,43 @@ function errorCheck(x) {
 };
 
 function calculateNoOfRiders() {
-	noOfRiders = ((resultsOdd.length/8 + resultsEven.length/8)+1)/2;
-}
+	noOfRiders = (resultsOdd.length/8 + resultsEven.length/8);
+};
 
-function combineRows() {
+//Added in Issue002 branch
+function isEven(n) {
+	return (n % 2 == 0);
+};
+
+
+function combineRows(x) {
 	
 	(function () {
 		
 		var i=0;
-		while(i < noOfRiders) {
-			
-			//Appends pos, rider, club, time of odd number positioned riders to results array
-			(function(){
-				var j=0;
-				while(j < 4){
-					results.push(resultsOdd[8*i + j]);
-					j++;
-				}
-			})();
-			
-			//Appends pos, rider, club, time of even number positioned riders to results array
-			(function(){
-				var k=0;
-				while(k < 4){
-					results.push(resultsEven[8*i + k]);
-					k++;
-				}
-			})();
 		
+		while(i < x/2) {
+		
+				//Appends pos, rider, club, time of odd number positioned riders to results array
+				(function(){
+					var j=0;
+					while(j < 4){
+						results.push(resultsOdd[8*(i) + j]);
+						j++;
+					}
+				})();
+				
+				//Appends pos, rider, club, time of even number positioned riders to results array
+				(function(){
+					var k=0;
+					while(k < 4){
+						results.push(resultsEven[8*(i) + k]);
+						k++;
+					}
+				})();
+
 		i++;
+		
 		}
 	
 	})();
