@@ -60,17 +60,7 @@ request(url, function(err, resp, body) {
 				j++;
 			}
 		})();
-		
-	//console.log("");
-	//console.log("Event:");
-	//console.log("");
-	//console.log(eventDetails);
-	//console.log("");
-	//console.log("Results:");
-	//console.log("");
-	//console.log(results.length);
-	//console.log(results);
-	
+
 	displayEventDetails();
 	displayResults();
 	
