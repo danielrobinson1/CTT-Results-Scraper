@@ -1,7 +1,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-var cttRaceId = 59444;
+var cttRaceId = 59445;
 var url = 'http://ww2.cyclingtimetrials.co.uk/Default.aspx?&ge1661__geka=1QkudlbsyaznI8nIEdhtNfxJ2GnxYXE00QFR9KF2O8dcBz7UXqvNXDinoHvSfRBRhdlr1Vg5J0SZzPr91RqOZf5WUd8ek4586uBBdXUu5BE&ge1661__gevi=bkosVTEcmXX5ekdECVvBmA&gv484__gvff0=' + cttRaceId + '&gv484__gvfl0=0&gv676__gvac=2&language=en-GB&tabid=723';
 var resultsOdd = [];
 var resultsEven = [];
@@ -40,18 +40,9 @@ request(url, function(err, resp, body) {
 	
 	calculateNoOfRiders();
 	combineRows();
-	
-	
-	console.log("");
-	console.log("Event:");
-	console.log("");
-	console.log(eventDetails);
-	console.log("");
-	console.log("Results:");
-	console.log("");
-	console.log(results.length);
-	console.log(results);
-	
+
+	displayEventDetails();
+	displayResults();
 	
 });
 
@@ -94,4 +85,18 @@ function combineRows() {
 	
 	})();
 
+};
+
+function displayEventDetails() {
+	console.log("");
+	console.log("Event:");
+	console.log("");
+	console.log(eventDetails);
+};
+
+function displayResults() {
+	console.log("");
+	console.log("Results:");
+	console.log("");
+	console.log(results);
 };
